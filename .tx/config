@@ -1,0 +1,7 @@
+[main]
+host = https://www.transifex.com
+
+[o:nullion:p:nullion:r:qt-translation-025x]
+file_filter = src/qt/locale/nullion_<lang>.xlf
+source_file = src/qt/locale/nullion_en.xlf
+source_lang = en

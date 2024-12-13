@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Nullion Core Security Policy
+    url: https://github.com/nullion/nullion/blob/master/SECURITY.md
+    about: View security policy
+  - name: Nullion Core Developers
+    url: https://bitcoincore.org
+    about: Nullion Core homepage
