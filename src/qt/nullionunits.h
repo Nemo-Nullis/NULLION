@@ -40,9 +40,9 @@ public:
       @note Source: https://en.nullion.it/wiki/Units . Please add only sensible ones
      */
     enum class Unit {
-        NULL,
-        mNULL,
-        uNULL,
+        NUTLL,
+        mNUTLL,
+        uNUTLL,
         SAT
     };
     Q_ENUM(Unit)

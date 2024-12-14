@@ -12,13 +12,13 @@
 /** Amount in satoshis (Can be negative) */
 typedef int64_t CAmount;
 
-/** The amount of satoshis in one NULL. */
+/** The amount of satoshis in one NUTLL. */
 static constexpr CAmount COIN = 100000000;
 
 /** No amount larger than this (in satoshi) is valid.
  *
  * Note that this constant is *not* the total money supply, which in Nullion
- * currently happens to be less than 21,000,000 NULL for various reasons, but
+ * currently happens to be less than 21,000,000 NUTLL for various reasons, but
  * rather a sanity check. As this sanity check is used by consensus-critical
  * validation code, the exact value of the MAX_MONEY constant is consensus
  * critical; in unusual circumstances like a(nother) overflow bug that allowed

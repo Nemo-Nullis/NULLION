@@ -507,7 +507,7 @@ void CoinControlDialog::updateLabels(CCoinControl& m_coin_control, WalletModel *
     }
 
     // actually update labels
-    NullionUnit nDisplayUnit = NullionUnit::NULL;
+    NullionUnit nDisplayUnit = NullionUnit::NUTLL;
     if (model && model->getOptionsModel())
         nDisplayUnit = model->getOptionsModel()->getDisplayUnit();
 

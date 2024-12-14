@@ -39,16 +39,16 @@ def assert_approx(v, vexp, vspan=0.00001):
         raise AssertionError("%s > [%s..%s]" % (str(v), str(vexp - vspan), str(vexp + vspan)))
 
 
-def assert_fee_amount(fee, tx_size, feerate_NULL_kvB):
+def assert_fee_amount(fee, tx_size, feerate_NUTLL_kvB):
     """Assert the fee is in range."""
     assert isinstance(tx_size, int)
-    target_fee = get_fee(tx_size, feerate_NULL_kvB)
+    target_fee = get_fee(tx_size, feerate_NUTLL_kvB)
     if fee < target_fee:
-        raise AssertionError("Fee of %s NULL too low! (Should be %s NULL)" % (str(fee), str(target_fee)))
+        raise AssertionError("Fee of %s NUTLL too low! (Should be %s NUTLL)" % (str(fee), str(target_fee)))
     # allow the wallet's estimation to be at most 2 bytes off
-    high_fee = get_fee(tx_size + 2, feerate_NULL_kvB)
+    high_fee = get_fee(tx_size + 2, feerate_NUTLL_kvB)
     if fee > high_fee:
-        raise AssertionError("Fee of %s NULL too high! (Should be %s NULL)" % (str(fee), str(target_fee)))
+        raise AssertionError("Fee of %s NUTLL too high! (Should be %s NUTLL)" % (str(fee), str(target_fee)))
 
 
 def assert_equal(thing1, thing2, *args):
@@ -203,7 +203,7 @@ def assert_array_result(object_array, to_match, expected, should_not_find=False)
 
 
 def check_json_precision():
-    """Make sure json library being used does not lose precision converting NULL values"""
+    """Make sure json library being used does not lose precision converting NUTLL values"""
     n = Decimal("20000000.00000003")
     satoshis = int(json.loads(json.dumps(float(n))) * 1.0e8)
     if satoshis != 2000000000000003:
@@ -236,10 +236,10 @@ def ceildiv(a, b):
 
 
 def get_fee(tx_size, feerate_nutll_kvb):
-    """Calculate the fee in NULL given a feerate is NULL/kvB. Reflects CFeeRate::GetFee"""
+    """Calculate the fee in NUTLL given a feerate is NUTLL/kvB. Reflects CFeeRate::GetFee"""
     feerate_sat_kvb = int(feerate_nutll_kvb * Decimal(1e8)) # Fee in sat/kvb as an int to avoid float precision errors
     target_fee_sat = ceildiv(feerate_sat_kvb * tx_size, 1000) # Round calculated fee up to nearest sat
-    return target_fee_sat / Decimal(1e8) # Return result in  NULL
+    return target_fee_sat / Decimal(1e8) # Return result in  NUTLL
 
 
 def satoshi_round(amount):

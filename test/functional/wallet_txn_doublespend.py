@@ -39,7 +39,7 @@ class TxnMallTest(NullionTestFramework):
         return self.nodes[0].sendrawtransaction(tx['hex'])
 
     def run_test(self):
-        # All nodes should start with 1,250 NULL:
+        # All nodes should start with 1,250 NUTLL:
         starting_balance = 1250
 
         # All nodes should be out of IBD.
@@ -68,7 +68,7 @@ class TxnMallTest(NullionTestFramework):
         # Coins are sent to node1_address
         node1_address = self.nodes[1].getnewaddress()
 
-        # First: use raw transaction API to send 1240 NULL to node1_address,
+        # First: use raw transaction API to send 1240 NUTLL to node1_address,
         # but don't broadcast:
         doublespend_fee = Decimal('-.02')
         rawtx_input_0 = {}
@@ -86,7 +86,7 @@ class TxnMallTest(NullionTestFramework):
         doublespend = self.nodes[0].signrawtransactionwithwallet(rawtx)
         assert_equal(doublespend["complete"], True)
 
-        # Create two spends using 1 50 NULL coin each
+        # Create two spends using 1 50 NUTLL coin each
         txid1 = self.spend_txid(fund_foo_txid, find_vout_for_address(self.nodes[0], fund_foo_txid, node0_address_foo), {node1_address: 40})
         txid2 = self.spend_txid(fund_bar_txid, find_vout_for_address(self.nodes[0], fund_bar_txid, node0_address_bar), {node1_address: 20})
 
@@ -97,7 +97,7 @@ class TxnMallTest(NullionTestFramework):
         tx1 = self.nodes[0].gettransaction(txid1)
         tx2 = self.nodes[0].gettransaction(txid2)
 
-        # Node0's balance should be starting balance, plus 50NULL for another
+        # Node0's balance should be starting balance, plus 50NUTLL for another
         # matured block, minus 40, minus 20, and minus transaction fees:
         expected = starting_balance + fund_foo_tx["fee"] + fund_bar_tx["fee"]
         if self.options.mine_block:
@@ -135,7 +135,7 @@ class TxnMallTest(NullionTestFramework):
         assert_equal(tx1["confirmations"], -2)
         assert_equal(tx2["confirmations"], -2)
 
-        # Node0's total balance should be starting balance, plus 100NULL for
+        # Node0's total balance should be starting balance, plus 100NUTLL for
         # two more matured blocks, minus 1240 for the double-spend, plus fees (which are
         # negative):
         expected = starting_balance + 100 - 1240 + fund_foo_tx["fee"] + fund_bar_tx["fee"] + doublespend_fee

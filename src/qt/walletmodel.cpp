@@ -516,7 +516,7 @@ bool WalletModel::bumpFee(uint256 hash, uint256& new_hash)
     }
 
     const bool enable_send{!wallet().privateKeysDisabled() || wallet().hasExternalSigner()};
-    const bool always_show_unsigned{getOptionsModel()->getEnablePSNULLontrols()};
+    const bool always_show_unsigned{getOptionsModel()->getEnablePSNUTLLontrols()};
     auto confirmationDialog = new SendConfirmationDialog(tr("Confirm fee bump"), questionString, "", "", SEND_CONFIRM_DELAY, enable_send, always_show_unsigned, nullptr);
     confirmationDialog->setAttribute(Qt::WA_DeleteOnClose);
     // TODO: Replace QDialog::exec() with safer QDialog::show().

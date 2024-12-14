@@ -560,7 +560,7 @@ class RawTransactionsTest(NullionTestFramework):
         if not self.options.descriptors:
             wmulti.importaddress(mSigObj)
 
-        # Send 1.2 NULL to msig addr.
+        # Send 1.2 NUTLL to msig addr.
         self.nodes[0].sendtoaddress(mSigObj, 1.2)
         self.generate(self.nodes[0], 1)
 
@@ -769,7 +769,7 @@ class RawTransactionsTest(NullionTestFramework):
         wwatch.unloadwallet()
 
     def test_option_feerate(self):
-        self.log.info("Test fundrawtxn with explicit fee rates (fee_rate sat/vB and feeRate NULL/kvB)")
+        self.log.info("Test fundrawtxn with explicit fee rates (fee_rate sat/vB and feeRate NUTLL/kvB)")
         node = self.nodes[3]
         # Make sure there is exactly one input so coin selection can't skew the result.
         assert_equal(len(self.nodes[3].listunspent(1)), 1)
@@ -839,7 +839,7 @@ class RawTransactionsTest(NullionTestFramework):
         node.fundrawtransaction(rawtx, {"feeRate": 0.00000999, "add_inputs": True})
 
         self.log.info("- raises RPC error if both feeRate and fee_rate are passed")
-        assert_raises_rpc_error(-8, "Cannot specify both fee_rate (sat/vB) and feeRate (NULL/kvB)",
+        assert_raises_rpc_error(-8, "Cannot specify both fee_rate (sat/vB) and feeRate (NUTLL/kvB)",
             node.fundrawtransaction, rawtx, {"fee_rate": 0.1, "feeRate": 0.1, "add_inputs": True})
 
         self.log.info("- raises RPC error if both feeRate and estimate_mode passed")
@@ -882,7 +882,7 @@ class RawTransactionsTest(NullionTestFramework):
         outputs = {self.nodes[2].getnewaddress(): 1}
         rawtx = self.nodes[3].createrawtransaction(inputs, outputs)
 
-        # Test subtract fee from outputs with feeRate (NULL/kvB)
+        # Test subtract fee from outputs with feeRate (NUTLL/kvB)
         result = [self.nodes[3].fundrawtransaction(rawtx),  # uses self.min_relay_tx_fee (set by settxfee)
             self.nodes[3].fundrawtransaction(rawtx, {"subtractFeeFromOutputs": []}),  # empty subtraction list
             self.nodes[3].fundrawtransaction(rawtx, {"subtractFeeFromOutputs": [0]}),  # uses self.min_relay_tx_fee (set by settxfee)
@@ -981,7 +981,7 @@ class RawTransactionsTest(NullionTestFramework):
         outputs = {}
         rawtx = recipient.createrawtransaction([], {wallet.getnewaddress(): 147.99899260})
 
-        # Make 1500 0.1 NULL outputs. The amount that we target for funding is in
+        # Make 1500 0.1 NUTLL outputs. The amount that we target for funding is in
         # the BnB range when these outputs are used.  However if these outputs
         # are selected, the transaction will end up being too large, so it
         # shouldn't use BnB and instead fall back to Knapsack but that behavior
@@ -1090,7 +1090,7 @@ class RawTransactionsTest(NullionTestFramework):
     def test_add_inputs_default_value(self):
         self.log.info("Test 'add_inputs' default value")
 
-        # Create and fund the wallet with 5 NULL
+        # Create and fund the wallet with 5 NUTLL
         self.nodes[2].createwallet("test_preset_inputs")
         wallet = self.nodes[2].get_wallet_rpc("test_preset_inputs")
         addr1 = wallet.getnewaddress(address_type="bech32")
@@ -1121,7 +1121,7 @@ class RawTransactionsTest(NullionTestFramework):
         # Select an input manually, which doesn't cover the entire output amount and
         # verify that the dynamically set 'add_inputs=false' value works.
 
-        # Fund wallet with 2 outputs, 5 NULL each.
+        # Fund wallet with 2 outputs, 5 NUTLL each.
         addr2 = wallet.getnewaddress(address_type="bech32")
         source_tx = self.nodes[0].send(outputs=[{addr1: 5}, {addr2: 5}], options={"change_position": 0})
         self.generate(self.nodes[0], 1)
@@ -1214,7 +1214,7 @@ class RawTransactionsTest(NullionTestFramework):
     def test_preset_inputs_selection(self):
         self.log.info('Test wallet preset inputs are not double-counted or reused in coin selection')
 
-        # Create and fund the wallet with 4 UTXO of 5 NULL each (20 NULL total)
+        # Create and fund the wallet with 4 UTXO of 5 NUTLL each (20 NUTLL total)
         self.nodes[2].createwallet("test_preset_inputs_selection")
         wallet = self.nodes[2].get_wallet_rpc("test_preset_inputs_selection")
         outputs = {}
@@ -1235,16 +1235,16 @@ class RawTransactionsTest(NullionTestFramework):
             "add_to_wallet": False
         }
 
-        # Attempt to send 29 NULL from a wallet that only has 20 NULL. The wallet should exclude
+        # Attempt to send 29 NUTLL from a wallet that only has 20 NUTLL. The wallet should exclude
         # the preset inputs from the pool of available coins, realize that there is not enough
-        # money to fund the 29 NULL payment, and fail with "Insufficient funds".
+        # money to fund the 29 NUTLL payment, and fail with "Insufficient funds".
         #
-        # Even with SFFO, the wallet can only afford to send 20 NULL.
+        # Even with SFFO, the wallet can only afford to send 20 NUTLL.
         # If the wallet does not properly exclude preset inputs from the pool of available coins
         # prior to coin selection, it may create a transaction that does not fund the full payment
         # amount or, through SFFO, incorrectly reduce the recipient's amount by the difference
-        # between the original target and the wrongly counted inputs (in this case 9 NULL)
-        # so that the recipient's amount is no longer equal to the user's selected target of 29 NULL.
+        # between the original target and the wrongly counted inputs (in this case 9 NUTLL)
+        # so that the recipient's amount is no longer equal to the user's selected target of 29 NUTLL.
 
         # First case, use 'subtract_fee_from_outputs = true'
         assert_raises_rpc_error(-4, "Insufficient funds", wallet.send, outputs=[{wallet.getnewaddress(address_type="bech32"): 29}], options=options)
@@ -1327,9 +1327,9 @@ class RawTransactionsTest(NullionTestFramework):
         # choose enough value to cover the target amount but not enough to cover the transaction fees.
         # This leads to a transaction whose actual transaction feerate is lower than expected.
         # However at normal feerates, the difference between the effective value and the real value
-        # that this bug is not detected because the transaction fee must be at least 0.01 NULL (the minimum change value).
+        # that this bug is not detected because the transaction fee must be at least 0.01 NUTLL (the minimum change value).
         # Otherwise the targeted minimum change value will be enough to cover the transaction fees that were not
-        # being accounted for. So the minimum relay fee is set to 0.1 NULL/kvB in this test.
+        # being accounted for. So the minimum relay fee is set to 0.1 NUTLL/kvB in this test.
         self.log.info("Test issue 22670 ApproximateBestSubset bug")
         # Make sure the default wallet will not be loaded when restarted with a high minrelaytxfee
         self.nodes[0].unloadwallet(self.default_wallet_name, False)
@@ -1434,13 +1434,13 @@ class RawTransactionsTest(NullionTestFramework):
         assert txid1 in mempool
 
         self.log.info("Fail to craft a new TX with minconf above highest one")
-        # Create a replacement tx to 'final_tx1' that has 1 NULL target instead of 0.1.
+        # Create a replacement tx to 'final_tx1' that has 1 NUTLL target instead of 0.1.
         raw_tx2 = wallet.createrawtransaction([{'txid': utxo1['txid'], 'vout': utxo1['vout']}], {target_address: 1})
         assert_raises_rpc_error(-4, "Insufficient funds", wallet.fundrawtransaction, raw_tx2, {'add_inputs': True, 'minconf': 3, 'fee_rate': 10})
 
         self.log.info("Fail to broadcast a new TX with maxconf 0 due to BIP125 rules to verify it actually chose unconfirmed outputs")
-        # Now fund 'raw_tx2' to fulfill the total target (1 NULL) by using all the wallet unconfirmed outputs.
-        # As it was created with the first unconfirmed output, 'raw_tx2' only has 0.1 NULL covered (need to fund 0.9 NULL more).
+        # Now fund 'raw_tx2' to fulfill the total target (1 NUTLL) by using all the wallet unconfirmed outputs.
+        # As it was created with the first unconfirmed output, 'raw_tx2' only has 0.1 NUTLL covered (need to fund 0.9 NUTLL more).
         # So, the selection process, to cover the amount, will pick up the 'final_tx1' output as well, which is an output of the tx that this
         # new tx is replacing!. So, once we send it to the mempool, it will return a "bad-txns-spends-conflicting-tx"
         # because the input will no longer exist once the first tx gets replaced by this new one).

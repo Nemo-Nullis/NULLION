@@ -10,7 +10,7 @@
 
 #include <cassert>
 
-static constexpr auto MAX_DIGITS_NULL = 16;
+static constexpr auto MAX_DIGITS_NUTLL = 16;
 
 NullionUnits::NullionUnits(QObject *parent):
         QAbstractListModel(parent),
@@ -21,9 +21,9 @@ NullionUnits::NullionUnits(QObject *parent):
 QList<NullionUnit> NullionUnits::availableUnits()
 {
     QList<NullionUnit> unitlist;
-    unitlist.append(Unit::NULL);
-    unitlist.append(Unit::mNULL);
-    unitlist.append(Unit::uNULL);
+    unitlist.append(Unit::NUTLL);
+    unitlist.append(Unit::mNUTLL);
+    unitlist.append(Unit::uNUTLL);
     unitlist.append(Unit::SAT);
     return unitlist;
 }
@@ -31,9 +31,9 @@ QList<NullionUnit> NullionUnits::availableUnits()
 QString NullionUnits::longName(Unit unit)
 {
     switch (unit) {
-    case Unit::NULL: return QString("NULL");
-    case Unit::mNULL: return QString("mNULL");
-    case Unit::uNULL: return QString::fromUtf8("µNULL (bits)");
+    case Unit::NUTLL: return QString("NUTLL");
+    case Unit::mNUTLL: return QString("mNUTLL");
+    case Unit::uNUTLL: return QString::fromUtf8("µNUTLL (bits)");
     case Unit::SAT: return QString("Satoshi");
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -42,9 +42,9 @@ QString NullionUnits::longName(Unit unit)
 QString NullionUnits::shortName(Unit unit)
 {
     switch (unit) {
-    case Unit::NULL: return longName(unit);
-    case Unit::mNULL: return longName(unit);
-    case Unit::uNULL: return QString("bits");
+    case Unit::NUTLL: return longName(unit);
+    case Unit::mNUTLL: return longName(unit);
+    case Unit::uNUTLL: return QString("bits");
     case Unit::SAT: return QString("sat");
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -53,9 +53,9 @@ QString NullionUnits::shortName(Unit unit)
 QString NullionUnits::description(Unit unit)
 {
     switch (unit) {
-    case Unit::NULL: return QString("Nullions");
-    case Unit::mNULL: return QString("Milli-Nullions (1 / 1" THIN_SP_UTF8 "000)");
-    case Unit::uNULL: return QString("Micro-Nullions (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case Unit::NUTLL: return QString("Nullions");
+    case Unit::mNUTLL: return QString("Milli-Nullions (1 / 1" THIN_SP_UTF8 "000)");
+    case Unit::uNUTLL: return QString("Micro-Nullions (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     case Unit::SAT: return QString("Satoshi (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -64,9 +64,9 @@ QString NullionUnits::description(Unit unit)
 qint64 NullionUnits::factor(Unit unit)
 {
     switch (unit) {
-    case Unit::NULL: return 100'000'000;
-    case Unit::mNULL: return 100'000;
-    case Unit::uNULL: return 100;
+    case Unit::NUTLL: return 100'000'000;
+    case Unit::mNUTLL: return 100'000;
+    case Unit::uNUTLL: return 100;
     case Unit::SAT: return 1;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -75,9 +75,9 @@ qint64 NullionUnits::factor(Unit unit)
 int NullionUnits::decimals(Unit unit)
 {
     switch (unit) {
-    case Unit::NULL: return 8;
-    case Unit::mNULL: return 5;
-    case Unit::uNULL: return 2;
+    case Unit::NUTLL: return 8;
+    case Unit::mNUTLL: return 5;
+    case Unit::uNUTLL: return 2;
     case Unit::SAT: return 0;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -94,7 +94,7 @@ QString NullionUnits::format(Unit unit, const CAmount& nIn, bool fPlus, Separato
     qint64 quotient = n_abs / coin;
     QString quotient_str = QString::number(quotient);
     if (justify) {
-        quotient_str = quotient_str.rightJustified(MAX_DIGITS_NULL - num_decimals, ' ');
+        quotient_str = quotient_str.rightJustified(MAX_DIGITS_NUTLL - num_decimals, ' ');
     }
 
     // Use SI-style thin space separators as these are locale independent and can't be
@@ -232,9 +232,9 @@ namespace {
 qint8 ToQint8(NullionUnit unit)
 {
     switch (unit) {
-    case NullionUnit::NULL: return 0;
-    case NullionUnit::mNULL: return 1;
-    case NullionUnit::uNULL: return 2;
+    case NullionUnit::NUTLL: return 0;
+    case NullionUnit::mNUTLL: return 1;
+    case NullionUnit::uNUTLL: return 2;
     case NullionUnit::SAT: return 3;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -243,9 +243,9 @@ qint8 ToQint8(NullionUnit unit)
 NullionUnit FromQint8(qint8 num)
 {
     switch (num) {
-    case 0: return NullionUnit::NULL;
-    case 1: return NullionUnit::mNULL;
-    case 2: return NullionUnit::uNULL;
+    case 0: return NullionUnit::NUTLL;
+    case 1: return NullionUnit::mNUTLL;
+    case 2: return NullionUnit::uNUTLL;
     case 3: return NullionUnit::SAT;
     }
     assert(false);

@@ -61,7 +61,7 @@ To run:
 
 * UI elements like NullionAmountField, which inherit from QWidget.
 * `nullionstrings.cpp`: automatically generated
-* `nullionunits.(h/cpp)`: NULL / mNULL / etc. handling
+* `nullionunits.(h/cpp)`: NUTLL / mNUTLL / etc. handling
 * `callback.h`
 * `guiconstants.h`: UI colors, app name, etc.
 * `guiutil.h`: several helper functions

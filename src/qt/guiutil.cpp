@@ -178,7 +178,7 @@ bool parseNullionURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if (!NullionUnits::parse(NullionUnit::NULL, i->second, &rv.amount)) {
+                if (!NullionUnits::parse(NullionUnit::NUTLL, i->second, &rv.amount)) {
                     return false;
                 }
             }
@@ -210,7 +210,7 @@ QString formatNullionURI(const SendCoinsRecipient &info)
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(NullionUnits::format(NullionUnit::NULL, info.amount, false, NullionUnits::SeparatorStyle::NEVER));
+        ret += QString("?amount=%1").arg(NullionUnits::format(NullionUnit::NUTLL, info.amount, false, NullionUnits::SeparatorStyle::NEVER));
         paramCount++;
     }
 

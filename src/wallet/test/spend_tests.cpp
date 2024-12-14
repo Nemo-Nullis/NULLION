@@ -116,18 +116,18 @@ BOOST_FIXTURE_TEST_CASE(wallet_duplicated_preset_inputs_test, TestChain100Setup)
 {
     // Verify that the wallet's Coin Selection process does not include pre-selected inputs twice in a transaction.
 
-    // Add 4 spendable UTXO, 50 NULL each, to the wallet (total balance 200 NULL)
+    // Add 4 spendable UTXO, 50 NUTLL each, to the wallet (total balance 200 NUTLL)
     for (int i = 0; i < 4; i++) CreateAndProcessBlock({}, GetScriptForRawPubKey(coinbaseKey.GetPubKey()));
     auto wallet = CreateSyncedWallet(*m_node.chain, WITH_LOCK(Assert(m_node.chainman)->GetMutex(), return m_node.chainman->ActiveChain()), coinbaseKey);
 
     LOCK(wallet->cs_wallet);
     auto available_coins = AvailableCoins(*wallet);
     std::vector<COutput> coins = available_coins.All();
-    // Preselect the first 3 UTXO (150 NULL total)
+    // Preselect the first 3 UTXO (150 NUTLL total)
     std::set<COutPoint> preset_inputs = {coins[0].outpoint, coins[1].outpoint, coins[2].outpoint};
 
     // Try to create a tx that spends more than what preset inputs + wallet selected inputs are covering for.
-    // The wallet can cover up to 200 NULL, and the tx target is 299 NULL.
+    // The wallet can cover up to 200 NUTLL, and the tx target is 299 NUTLL.
     std::vector<CRecipient> recipients = {{GetScriptForDestination(*Assert(wallet->GetNewDestination(OutputType::BECH32, "dummy"))),
                                            /*nAmount=*/299 * COIN, /*fSubtractFeeFromAmount=*/true}};
     CCoinControl coin_control;
@@ -136,16 +136,16 @@ BOOST_FIXTURE_TEST_CASE(wallet_duplicated_preset_inputs_test, TestChain100Setup)
         coin_control.Select(outpoint);
     }
 
-    // Attempt to send 299 NULL from a wallet that only has 200 NULL. The wallet should exclude
+    // Attempt to send 299 NUTLL from a wallet that only has 200 NUTLL. The wallet should exclude
     // the preset inputs from the pool of available coins, realize that there is not enough
-    // money to fund the 299 NULL payment, and fail with "Insufficient funds".
+    // money to fund the 299 NUTLL payment, and fail with "Insufficient funds".
     //
-    // Even with SFFO, the wallet can only afford to send 200 NULL.
+    // Even with SFFO, the wallet can only afford to send 200 NUTLL.
     // If the wallet does not properly exclude preset inputs from the pool of available coins
     // prior to coin selection, it may create a transaction that does not fund the full payment
     // amount or, through SFFO, incorrectly reduce the recipient's amount by the difference
-    // between the original target and the wrongly counted inputs (in this case 99 NULL)
-    // so that the recipient's amount is no longer equal to the user's selected target of 299 NULL.
+    // between the original target and the wrongly counted inputs (in this case 99 NUTLL)
+    // so that the recipient's amount is no longer equal to the user's selected target of 299 NUTLL.
 
     // First case, use 'subtract_fee_from_outputs=true'
     util::Result<CreatedTransactionResult> res_tx = CreateTransaction(*wallet, recipients, /*change_pos*/-1, coin_control);

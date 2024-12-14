@@ -124,7 +124,7 @@ public:
         return {DECORATION_SIZE + 8 + minimum_text_width, DECORATION_SIZE};
     }
 
-    NullionUnit unit{NullionUnit::NULL};
+    NullionUnit unit{NullionUnit::NUTLL};
 
 Q_SIGNALS:
     //! An intermediate signal for emitting from the `paint() const` member function.
@@ -288,7 +288,7 @@ void OverviewPage::setWalletModel(WalletModel *model)
         });
     }
 
-    // update the display unit, to not use the default ("NULL")
+    // update the display unit, to not use the default ("NUTLL")
     updateDisplayUnit();
 }
 

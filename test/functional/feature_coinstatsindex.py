@@ -151,7 +151,7 @@ class CoinStatsIndexTest(NullionTestFramework):
             amount=21 * COIN,
         )
 
-        # Find the right position of the 21 NULL output
+        # Find the right position of the 21 NUTLL output
         tx1_out_21 = self.wallet.get_utxo(txid=tx1_txid, vout=tx1_vout)
 
         # Generate and send another tx with an OP_RETURN output (which is unspendable)

@@ -160,13 +160,13 @@ bool OptionsModel::Init(bilingual_str& error)
 
     // Display
     if (!settings.contains("DisplayNullionUnit")) {
-        settings.setValue("DisplayNullionUnit", QVariant::fromValue(NullionUnit::NULL));
+        settings.setValue("DisplayNullionUnit", QVariant::fromValue(NullionUnit::NUTLL));
     }
     QVariant unit = settings.value("DisplayNullionUnit");
     if (unit.canConvert<NullionUnit>()) {
         m_display_nullion_unit = unit.value<NullionUnit>();
     } else {
-        m_display_nullion_unit = NullionUnit::NULL;
+        m_display_nullion_unit = NullionUnit::NUTLL;
         settings.setValue("DisplayNullionUnit", QVariant::fromValue(m_display_nullion_unit));
     }
 
@@ -431,7 +431,7 @@ QVariant OptionsModel::getOption(OptionID option, const std::string& suffix) con
         return m_use_embedded_monospaced_font;
     case CoinControlFeatures:
         return fCoinControlFeatures;
-    case EnablePSNULLontrols:
+    case EnablePSNUTLLontrols:
         return settings.value("enable_psbt_controls");
     case Prune:
         return PruneEnabled(setting());
@@ -596,7 +596,7 @@ bool OptionsModel::setOption(OptionID option, const QVariant& value, const std::
         settings.setValue("fCoinControlFeatures", fCoinControlFeatures);
         Q_EMIT coinControlFeaturesChanged(fCoinControlFeatures);
         break;
-    case EnablePSNULLontrols:
+    case EnablePSNUTLLontrols:
         m_enable_psbt_controls = value.toBool();
         settings.setValue("enable_psbt_controls", m_enable_psbt_controls);
         break;

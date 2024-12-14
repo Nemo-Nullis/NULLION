@@ -71,7 +71,7 @@ public:
         SpendZeroConfChange,    // bool
         Listen,                 // bool
         Server,                 // bool
-        EnablePSNULLontrols,     // bool
+        EnablePSNUTLLontrols,     // bool
         MaskValues,             // bool
         OptionIDRowCount,
     };
@@ -96,7 +96,7 @@ public:
     bool getUseEmbeddedMonospacedFont() const { return m_use_embedded_monospaced_font; }
     bool getCoinControlFeatures() const { return fCoinControlFeatures; }
     bool getSubFeeFromAmount() const { return m_sub_fee_from_amount; }
-    bool getEnablePSNULLontrols() const { return m_enable_psbt_controls; }
+    bool getEnablePSNUTLLontrols() const { return m_enable_psbt_controls; }
     const QString& getOverriddenByCommandLine() { return strOverriddenByCommandLine; }
 
     /** Whether -signer was set or not */
