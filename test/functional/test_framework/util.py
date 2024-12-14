@@ -235,9 +235,9 @@ def ceildiv(a, b):
     return -(-a // b)
 
 
-def get_fee(tx_size, feerate_null_kvb):
+def get_fee(tx_size, feerate_nutll_kvb):
     """Calculate the fee in NULL given a feerate is NULL/kvB. Reflects CFeeRate::GetFee"""
-    feerate_sat_kvb = int(feerate_null_kvb * Decimal(1e8)) # Fee in sat/kvb as an int to avoid float precision errors
+    feerate_sat_kvb = int(feerate_nutll_kvb * Decimal(1e8)) # Fee in sat/kvb as an int to avoid float precision errors
     target_fee_sat = ceildiv(feerate_sat_kvb * tx_size, 1000) # Round calculated fee up to nearest sat
     return target_fee_sat / Decimal(1e8) # Return result in  NULL
 

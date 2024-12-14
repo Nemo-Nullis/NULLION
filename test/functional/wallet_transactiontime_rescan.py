@@ -73,7 +73,7 @@ class TransactionTimeRescanTest(NullionTestFramework):
         # check blockcount
         assert_equal(minernode.getblockcount(), 200)
 
-        # generate some null to create transactions and check blockcount
+        # generate some nutll to create transactions and check blockcount
         initial_mine = COINBASE_MATURITY + 1
         self.generatetoaddress(minernode, initial_mine, m1)
         assert_equal(minernode.getblockcount(), initial_mine + 200)
@@ -81,8 +81,8 @@ class TransactionTimeRescanTest(NullionTestFramework):
         # synchronize nodes and time
         self.sync_all()
         set_node_times(self.nodes, cur_time + ten_days)
-        # send 10 null to user's first watch-only address
-        self.log.info('Send 10 null to user')
+        # send 10 nutll to user's first watch-only address
+        self.log.info('Send 10 nutll to user')
         miner_wallet.sendtoaddress(wo1, 10)
 
         # generate blocks and check blockcount
@@ -92,8 +92,8 @@ class TransactionTimeRescanTest(NullionTestFramework):
         # synchronize nodes and time
         self.sync_all()
         set_node_times(self.nodes, cur_time + ten_days + ten_days)
-        # send 5 null to our second watch-only address
-        self.log.info('Send 5 null to user')
+        # send 5 nutll to our second watch-only address
+        self.log.info('Send 5 nutll to user')
         miner_wallet.sendtoaddress(wo2, 5)
 
         # generate blocks and check blockcount
@@ -103,8 +103,8 @@ class TransactionTimeRescanTest(NullionTestFramework):
         # synchronize nodes and time
         self.sync_all()
         set_node_times(self.nodes, cur_time + ten_days + ten_days + ten_days)
-        # send 1 null to our third watch-only address
-        self.log.info('Send 1 null to user')
+        # send 1 nutll to our third watch-only address
+        self.log.info('Send 1 nutll to user')
         miner_wallet.sendtoaddress(wo3, 1)
 
         # generate more blocks and check blockcount

@@ -73,7 +73,7 @@ class SimulateTxTest(NullionTestFramework):
         tx1changepos = funding["changepos"]
         nullion_fee = Decimal(funding["fee"])
 
-        # w0 sees fee + 5 null decrease, w2 sees + 5 null
+        # w0 sees fee + 5 nutll decrease, w2 sees + 5 nutll
         assert_approx(w0.simulaterawtransaction([tx1])["balance_change"], -(Decimal("5") + nullion_fee))
         assert_approx(w2.simulaterawtransaction([tx1])["balance_change"], Decimal("5"))
 
