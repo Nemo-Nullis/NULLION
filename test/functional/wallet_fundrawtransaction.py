@@ -769,7 +769,7 @@ class RawTransactionsTest(NullionTestFramework):
         wwatch.unloadwallet()
 
     def test_option_feerate(self):
-        self.log.info("Test fundrawtxn with explicit fee rates (fee_rate sat/vB and feeRate NUTLL/kvB)")
+        self.log.info("Test fundrawtxn with explicit fee rates (fee_rate sat/vB and feeRate NULL/kvB)")
         node = self.nodes[3]
         # Make sure there is exactly one input so coin selection can't skew the result.
         assert_equal(len(self.nodes[3].listunspent(1)), 1)

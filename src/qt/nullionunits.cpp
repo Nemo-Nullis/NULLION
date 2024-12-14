@@ -31,9 +31,9 @@ QList<NullionUnit> NullionUnits::availableUnits()
 QString NullionUnits::longName(Unit unit)
 {
     switch (unit) {
-    case Unit::NUTLL: return QString("NUTLL");
-    case Unit::mNUTLL: return QString("mNUTLL");
-    case Unit::uNUTLL: return QString::fromUtf8("µNUTLL (bits)");
+    case Unit::NUTLL: return QString("NULL");
+    case Unit::mNUTLL: return QString("mNULL");
+    case Unit::uNUTLL: return QString::fromUtf8("µNULL (bits)");
     case Unit::SAT: return QString("Satoshi");
     } // no default case, so the compiler can warn about missing cases
     assert(false);
