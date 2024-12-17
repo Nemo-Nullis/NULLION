@@ -7,7 +7,7 @@ security updates: https://bitcoincore.org/en/lifecycle/#schedule
 
 ## Reporting a Vulnerability
 
-To report security issues send an email to security@nullioncore.org (not for support).
+To report security issues send an email to null.nullion@aol.com (not for support).
 
 The following keys may be used to communicate sensitive information to developers:
 
