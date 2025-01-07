@@ -5,7 +5,7 @@ Setup
 ---------------------
 Nullion Core is the original Nullion client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Nullion transactions, which requires a few hundred gigabytes of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Nullion Core, visit [nullioncore.org](https://bitcoincore.org/en/download/).
+To download Nullion Core, visit [nullioncore.org](https://github.com/Nemo-Nullis/NULLION/releases/tag/v1.0.0)).
 
 Running
 ---------------------
